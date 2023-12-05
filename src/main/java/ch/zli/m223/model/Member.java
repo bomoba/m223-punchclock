@@ -1,77 +1,79 @@
 package ch.zli.m223.model;
 
 import javax.persistence.*;
-import javax.validation.constraints.AssertTrue;
-import org.eclipse.microprofile.openapi.annotations.media.Schema;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import java.util.Set;
+import java.util.List;
 
-@Member
-public @interface Member {
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  @Schema(readOnly = true)
-  private Long memberID;
+@Entity
+public class Member {
 
-  @ManyToOne(optional = false)
-  @Fetch(FetchMode.JOIN)
-  private Category category;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-  @ManyToMany
-  @JoinTable(
-    name = "entry_tags",
-    joinColumns = @JoinColumn(name = "entry_id"),
-    inverseJoinColumns = @JoinColumn(name = "tag_id")
-  )
-  @JsonIgnoreProperties("entries")
-  @Fetch(FetchMode.JOIN)
-  private Set<Tag> tags;
+    @Column(nullable = false)
+    private String firstName;
 
-  public Long getId() {
-    return memberID;
-  }
+    @Column(nullable = false)
+    private String lastName;
 
-  public void setId(Long memberID) {
-    this.memberID = memberID;
-  }
+    @Column(nullable = false, unique = true)
+    private String email;
 
-  public LocalDateTime getCheckIn() {
-    return checkIn;
-  }
+    @Column(nullable = false)
+    private String password;
 
-  public void setCheckIn(LocalDateTime checkIn) {
-    this.checkIn = checkIn;
-  }
+    //Ein Member kann nur eine Rolle haben.
+    @ManyToOne
+    @JoinColumn(name = "role_id", referencedColumnName = "id")
+    private Role role;
 
-  public LocalDateTime getCheckOut() {
-    return checkOut;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public void setCheckOut(LocalDateTime checkOut) {
-    this.checkOut = checkOut;
-  }
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-  public Category getCategory() {
-    return category;
-  }
+    public String getFirstName() {
+        return firstName;
+    }
 
-  public void setCategory(Category category) {
-    this.category = category;
-  }
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
 
-  public Set<Tag> getTags() {
-    return tags;
-  }
+    public String getLastName() {
+        return lastName;
+    }
 
-  public void setTags(Set<Tag> tags) {
-    this.tags = tags;
-  }
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
 
-  @Schema(hidden = true)
-  @AssertTrue(message = "Check out should be after check in.")
-  private boolean isCheckOutAfterCheckIn() {
-    return this.checkOut.isAfter(this.checkIn);
-  }
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    
 }
