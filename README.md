@@ -4,7 +4,8 @@ MySpace ist ein Buchungserfassungssystem für Coworking Space, welches mit Quark
 
 ## Einrichtung des Projekts
 
-Projekt MySpace basiert auf dem aktuellen Projekt, das bearbeitet wird.
+Das Projekt MySpace basiert auf dem aktuellen Projekt 'Punchclock' von Modul 223 und wird überarbeitet.
+
 Um dieses Projekt aufzusetzen, folge diesen Schritten:
 
 1. Stelle sicher, dass du die folgenden Voraussetzungen erfüllst:
@@ -13,8 +14,8 @@ Um dieses Projekt aufzusetzen, folge diesen Schritten:
    - Eine Datenbank (z. B. PostgreSQL) und die entsprechenden Verbindungsinformationen
 
 2. Klone das Projekt von GitHub:
-   ```bash
-   git clone https://github.com/dein-benutzername/mein-projekt.git
+
+   git clone https://github.com/bomoba/mySpace.git
 
 ### Starten des Projekts
 
@@ -24,16 +25,8 @@ Um dieses Projekt aufzusetzen, folge diesen Schritten:
 
 Die Daten werden in einer PostgreSQL-Datenbank gespeichert. In der Entwicklungsumgebung wird diese in der [docker-compose-yml](./.devcontainer/docker-compose.yml) konfiguriert.
 
-#### Testdaten
 
-Über http://localhost:5050 ist PgAdmin4 erreichbar. Damit lässt sich die Datenbank komfortabel verwalten. Der Benutzername lautet `zli@example.com` und das Passwort `zli*123`. Die Verbindung zur PostgreSQL-Datenbank muss zuerst mit folgenden Daten konfiguriert werden:
- - Host name/address: `db`
- - Port: `5432`
- - Maintenance database: `postgres`
- - Username: `postgres`
- - Password: `postgres`
-
-## Automatische Tests
+#### Automatische Tests
 
 1 Stelle sicher, dass die Anwendung läuft (siehe Abschnitt "Starten des Projekts").
 
@@ -42,5 +35,7 @@ Die Daten werden in einer PostgreSQL-Datenbank gespeichert. In der Entwicklungsu
 3 Führe den Befehl aus, um Testdaten zu generieren:
 mvn exec:java -Dexec.mainClass="ch.zli.m223.IntegrationTestDataService"
 
+##### Bemerkung
 
+Das Projekt war für mich sehr herausfordernd. Ich liess mich von Beispielen der Dozenten während des Unterrichts im Modul 223 inspirieren, sowie von anderem Code, den ich in Projekten für Module des ZLI und auch ausserhalb erstellt habe.
 
