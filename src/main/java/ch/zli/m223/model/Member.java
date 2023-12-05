@@ -8,7 +8,7 @@ public class Member {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long memberID;
 
     @Column(nullable = false)
     private String firstName;
@@ -24,15 +24,15 @@ public class Member {
 
     //Ein Member kann nur eine Rolle haben.
     @ManyToOne
-    @JoinColumn(name = "role_id", referencedColumnName = "id")
-    private Role role;
+    @JoinColumn(name = "roleID", referencedColumnName = "roleID")
+    private Role roleID;
 
     public Long getId() {
-        return id;
+        return role;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setId(Long roleID) {
+        this.roleID = role;
     }
 
     public String getFirstName() {
@@ -68,11 +68,11 @@ public class Member {
     }
 
     public Role getRole() {
-        return role;
+        return roleID;
     }
 
     public void setRole(Role role) {
-        this.role = role;
+        this.roleID = role;
     }
 
     
