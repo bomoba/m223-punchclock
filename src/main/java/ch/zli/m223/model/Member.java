@@ -22,17 +22,17 @@ public class Member {
     @Column(nullable = false)
     private String password;
 
-    //Ein Member kann nur eine Rolle haben.
+    // Ein Member kann nur eine Rolle haben.
     @ManyToOne
     @JoinColumn(name = "roleID", referencedColumnName = "roleID")
     private Role roleID;
 
-    public Long getId() {
-        return role;
+    public Role getId() {
+        return roleID;
     }
 
     public void setId(Long roleID) {
-        this.roleID = role;
+        this.roleID = getRole();
     }
 
     public String getFirstName() {
@@ -75,5 +75,4 @@ public class Member {
         this.roleID = role;
     }
 
-    
 }

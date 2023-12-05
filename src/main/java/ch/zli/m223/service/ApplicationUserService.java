@@ -10,36 +10,49 @@ import ch.zli.m223.model.ApplicationUser;
 
 @ApplicationScoped
 public class ApplicationUserService {
+
     @Inject
     EntityManager entityManager;
 
     @Transactional
-    public ApplicationUser createUser(ApplicationUser user) {
-        return entityManager.merge(user);
+    public ApplicationUser createUser(ApplicationUser member) {
+        entityManager.persist(member);
+        return member; 
     }
 
     @Transactional
-    public void deleteUser(Long id) {
-        var entity = entityManager.find(ApplicationUser.class, id);
-        entityManager.remove(entity);
+    public void deleteUser(Long MemberID) {
+        ApplicationUser member = entityManager.find(ApplicationUser.class, MemberID);
+        if (member != null) {
+            entityManager.remove(member);
+        }
     }
 
     @Transactional
-    public ApplicationUser updateUser(Long id, ApplicationUser user) {
-        user.setId(id);
-        return entityManager.merge(user);
+    public ApplicationUser updateUser(Long memberID, ApplicationUser member) {
+        ApplicationUser existingMember = entityManager.find(ApplicationUser.class, memberID);
+        if (existingMember != null) {
+            existingMember.setEmail(member.getEmail());
+            existingMember.setPassword(member.getPassword());
+            existingMember.setFirstName(member.getFirstName());
+            entityManager.merge(existingMember);
+            return existingMember;
+        } else {
+            throw new IllegalArgumentException("User not found with ID: " + memberID);
+        }
     }
 
     public List<ApplicationUser> findAll() {
-        var query = entityManager.createQuery("FROM ApplicationUser", ApplicationUser.class);
-        return query.getResultList();
+        return entityManager.createQuery("SELECT m FROM ApplicationUser m", ApplicationUser.class).getResultList();
     }
 
     public Optional<ApplicationUser> findByEmail(String email) {
-        return entityManager
+        return Optional.ofNullable(entityManager
                 .createNamedQuery("ApplicationUser.findByEmail", ApplicationUser.class)
                 .setParameter("email", email)
-                .getResultStream()
-                .findFirst();
+                .getResultList()
+                .stream()
+                .findFirst()
+                .orElse(null));
     }
 }
