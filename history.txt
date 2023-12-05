@@ -1,0 +1,203 @@
+commit e1c49e37b18b93a05456d0440939f9fbdda8110e
+Author: bomoba <142784300+bomoba@users.noreply.github.com>
+Date:   Tue Dec 5 15:30:05 2023 +0000
+
+    Readme
+
+commit bba9226b0e06733f2fffd6046ef67602d2b77d31
+Author: bomoba <142784300+bomoba@users.noreply.github.com>
+Date:   Tue Dec 5 15:15:48 2023 +0000
+
+    Kleine Anpassungen
+
+commit 17407b87979559a06dccf897f90d609ef5beeeb5
+Author: bomoba <142784300+bomoba@users.noreply.github.com>
+Date:   Tue Dec 5 14:46:30 2023 +0000
+
+    Alle Klassen
+
+commit 77c61581c023512f3744ef60f989efcba0f958bf
+Author: bomoba <142784300+bomoba@users.noreply.github.com>
+Date:   Tue Dec 5 10:01:03 2023 +0000
+
+    AppUserService
+
+commit a5f07e52ec7c2dac6f009a22adf167fb6d7609c9
+Author: bomoba <142784300+bomoba@users.noreply.github.com>
+Date:   Tue Dec 5 09:30:50 2023 +0000
+
+    Member & App UserService
+
+commit b45ef4a7901faa6086c9ff0c08ecf051ae264a24
+Author: bomoba <142784300+bomoba@users.noreply.github.com>
+Date:   Tue Dec 5 08:52:33 2023 +0000
+
+    member update
+
+commit bf59b9b821f56cee8a003d381f24cb65332e2ecd
+Author: bomoba <142784300+bomoba@users.noreply.github.com>
+Date:   Tue Dec 5 08:44:32 2023 +0000
+
+    Member
+
+commit f317a382cf67838461c6bce5d78859032aa028b6
+Author: bomoba <142784300+bomoba@users.noreply.github.com>
+Date:   Tue Dec 5 08:35:59 2023 +0000
+
+    ApplicationUser
+
+commit db9ec6c1b0567d1fd4ec57f597b369e84d93da7e
+Author: bomoba <142784300+bomoba@users.noreply.github.com>
+Date:   Tue Dec 5 08:18:53 2023 +0000
+
+    ApplicationUserController
+
+commit 412f680dafb2893bf91e56c0376d278c73d130e9
+Author: bomoba <142784300+bomoba@users.noreply.github.com>
+Date:   Tue Dec 5 07:55:52 2023 +0000
+
+    Member update
+
+commit c5df8dd81a66ab6061bb39d59cd4619623e9df36
+Author: bomoba <142784300+bomoba@users.noreply.github.com>
+Date:   Tue Dec 5 07:44:06 2023 +0000
+
+    Code update
+
+commit 2face79548eb359c5261f9e6f7dd324a95f85c1d
+Author: bomoba <142784300+bomoba@users.noreply.github.com>
+Date:   Mon Nov 27 14:34:51 2023 +0100
+
+    instalation
+
+commit 2e14cfb11d7469bc6717e954266bd44c04a9f12f
+Author: Robin <1105080+openscript@users.noreply.github.com>
+Date:   Wed Nov 30 14:04:06 2022 +0100
+
+    chore: remove 5050 from vscode port forwarding
+
+commit 6263449689b834e772526e4193dbfc9b47bcdfe4
+Author: Robin Bühler <git+r@obin.ch>
+Date:   Wed Oct 26 16:01:49 2022 +0200
+
+    chore: add editor config
+
+commit 42cef3d3dc3f626084b0e238558c30e5ed0185cc
+Author: Robin Bühler <git+r@obin.ch>
+Date:   Wed Oct 26 15:34:02 2022 +0200
+
+    chore: configure eols to lf
+
+commit 192b2ddd80ef484bd4c75d607d389c9bbfcbddca
+Author: Robin <git+r@obin.ch>
+Date:   Sun Sep 11 08:22:31 2022 +0000
+
+    chore: remove container names to prevent collisions
+
+commit 33e3d455759dbcda9df6456e22efb07c1a15f119
+Author: Robin <git+r@obin.ch>
+Date:   Sun Sep 11 08:09:10 2022 +0000
+
+    chore(api): enhance openapi schema for entry
+
+commit e4123709634fa78042dde54c418c60691c085a28
+Author: Robin <git+r@obin.ch>
+Date:   Sat Sep 10 22:05:02 2022 +0000
+
+    docs(readme): mention swagger ui
+
+commit 00558503b2c37afc54928daa28f6a69a9442640c
+Author: Robin <git+r@obin.ch>
+Date:   Sat Sep 10 21:57:39 2022 +0000
+
+    chore: clean up constructor
+
+commit dbdb25061cd45e36e636972e4448c8f7c1541eca
+Author: Robin <git+r@obin.ch>
+Date:   Sat Sep 10 15:26:13 2022 +0000
+
+    chore: configure test database
+
+commit 884bde14232e6b7489fc9c5430bd4e1a0b07993a
+Author: Robin <git+r@obin.ch>
+Date:   Sat Sep 10 15:12:47 2022 +0000
+
+    chore: clean up starter code
+
+commit b8db827c0e916f8002e0f8ffd87d00aac795f94a
+Author: Robin <git+r@obin.ch>
+Date:   Sat Sep 10 15:06:03 2022 +0000
+
+    chore: configure pgadmin
+
+commit 2c0a559751738b478ba12b4573c6b58c0a08ff27
+Author: Robin <git+r@obin.ch>
+Date:   Sat Sep 10 14:34:33 2022 +0000
+
+    chore: configure cors
+
+commit 3ef8f47155ecef4121dc90a12cf93475d7930585
+Author: Robin <git+r@obin.ch>
+Date:   Sat Sep 10 14:34:26 2022 +0000
+
+    chore(deps): add jackson
+
+commit aa2780e9c7c0f7c7949f44a9aaefd848224fb34f
+Author: Robin <git+r@obin.ch>
+Date:   Sat Sep 10 10:52:16 2022 +0000
+
+    feat: add entries user interface
+
+commit 49e894cb16d23be07f967e355e6389f9698405a4
+Author: Robin <git+r@obin.ch>
+Date:   Sat Sep 10 10:52:06 2022 +0000
+
+    feat: manage entries
+
+commit 78f69d99e83b691484a2d0c9e705bba2e3a0ce72
+Author: Robin <git+r@obin.ch>
+Date:   Sat Sep 10 10:51:46 2022 +0000
+
+    chore: configure application
+
+commit 49ac1241e70de2efbb2a976cb5e2b173f534cb54
+Author: Robin <git+r@obin.ch>
+Date:   Sat Sep 10 10:51:29 2022 +0000
+
+    chore: unify project name
+
+commit 471e03722f7d761e916f3b114c23e2522e80c42b
+Author: Robin <git+r@obin.ch>
+Date:   Sat Sep 10 10:29:14 2022 +0000
+
+    chore(deps): add openapi dependency
+
+commit ccf8089fe093e6ec5f6e07bb83110150a7572edc
+Author: Robin <git+r@obin.ch>
+Date:   Sat Sep 10 10:24:01 2022 +0000
+
+    chore(deps): add hibernate and postgres driver
+
+commit e85b9a3069f8c054290db546c5f2d639b767a9d2
+Author: Robin <git+r@obin.ch>
+Date:   Sat Sep 10 10:20:35 2022 +0000
+
+    chore: initialize quarkus project
+
+commit 0af0def7cfbb2a7100a556c0511e9921c56ee06e
+Author: Robin <git+r@obin.ch>
+Date:   Sat Sep 10 10:00:59 2022 +0000
+
+    chore: initialize dev container
+
+commit 25773244e41c50cfee03cce8db7e25422e40f0e5
+Author: Robin <1105080+openscript@users.noreply.github.com>
+Date:   Sat Sep 10 11:46:11 2022 +0200
+
+    docs(readme): add first steps
+
+commit 030b7f897dbc9b54134143531e31856d3badb31d
+Author: Robin <1105080+openscript@users.noreply.github.com>
+Date:   Sat Sep 10 11:17:27 2022 +0200
+
+    Initial commit
