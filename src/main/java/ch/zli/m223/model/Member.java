@@ -1,5 +1,77 @@
 package ch.zli.m223.model;
 
-public @interface Member {
+import javax.persistence.*;
+import javax.validation.constraints.AssertTrue;
+import org.eclipse.microprofile.openapi.annotations.media.Schema;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import java.util.Set;
 
+@Member
+public @interface Member {
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  @Schema(readOnly = true)
+  private Long memberID;
+
+  @ManyToOne(optional = false)
+  @Fetch(FetchMode.JOIN)
+  private Category category;
+
+  @ManyToMany
+  @JoinTable(
+    name = "entry_tags",
+    joinColumns = @JoinColumn(name = "entry_id"),
+    inverseJoinColumns = @JoinColumn(name = "tag_id")
+  )
+  @JsonIgnoreProperties("entries")
+  @Fetch(FetchMode.JOIN)
+  private Set<Tag> tags;
+
+  public Long getId() {
+    return memberID;
+  }
+
+  public void setId(Long memberID) {
+    this.memberID = memberID;
+  }
+
+  public LocalDateTime getCheckIn() {
+    return checkIn;
+  }
+
+  public void setCheckIn(LocalDateTime checkIn) {
+    this.checkIn = checkIn;
+  }
+
+  public LocalDateTime getCheckOut() {
+    return checkOut;
+  }
+
+  public void setCheckOut(LocalDateTime checkOut) {
+    this.checkOut = checkOut;
+  }
+
+  public Category getCategory() {
+    return category;
+  }
+
+  public void setCategory(Category category) {
+    this.category = category;
+  }
+
+  public Set<Tag> getTags() {
+    return tags;
+  }
+
+  public void setTags(Set<Tag> tags) {
+    this.tags = tags;
+  }
+
+  @Schema(hidden = true)
+  @AssertTrue(message = "Check out should be after check in.")
+  private boolean isCheckOutAfterCheckIn() {
+    return this.checkOut.isAfter(this.checkIn);
+  }
 }
