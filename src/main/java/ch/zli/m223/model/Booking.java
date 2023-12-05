@@ -25,11 +25,9 @@ public class Booking {
     @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<B_Details> details = new HashSet<>();
 
-    // Standardkonstruktor
     public Booking() {
     }
 
-    // Getter und Setter
     public Long getBookingID() {
         return bookingID;
     }
@@ -70,7 +68,6 @@ public class Booking {
         this.details = details;
     }
 
-    // Hilfsmethoden für die Beziehung
     public void addDetail(B_Details detail) {
         details.add(detail);
         detail.setBooking(this);

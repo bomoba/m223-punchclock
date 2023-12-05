@@ -5,11 +5,9 @@ public class Credential {
     private String email;
     private String password;
 
-    // Konstruktor
     public Credential() {
     }
 
-    // Getter und Setter
     public String getEmail() {
         return email;
     }

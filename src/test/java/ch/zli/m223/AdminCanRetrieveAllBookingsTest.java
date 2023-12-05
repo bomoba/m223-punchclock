@@ -32,7 +32,7 @@ public class AdminCanRetrieveAllBookingsTest {
 
     private String obtainAdminToken() {
         //                                      
-        // Eduardo hier muss du noch bearbeiten //
+        // NOCH ARBEITEN //
         //
         return "mocked-admin-token";
     }

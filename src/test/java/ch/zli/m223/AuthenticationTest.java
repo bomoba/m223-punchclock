@@ -1,26 +1,16 @@
 package ch.zli.m223;
 
 class MemberRegistration {
-    private String username;
     private String email;
     private String password;
     private String firstName;
     private String lastName;
 
-    public MemberRegistration(String username, String email, String password, String firstName, String lastName) {
-        this.username = username;
+    public MemberRegistration(String email, String password, String firstName, String lastName) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
-    }
-
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
     }
 
     public String getEmail() {

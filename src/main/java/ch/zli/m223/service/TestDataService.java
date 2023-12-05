@@ -23,24 +23,21 @@ public class TestDataService {
     @PostConstruct
     @Transactional
     public Role createRole(String roleName) {
-      Role role = new Role();
-      role.setName(roleName);
-      entityManager.persist(role);
-      return role;
-  }
+        Role role = new Role();
+        role.setName(roleName);
+        entityManager.persist(role);
+        return role;
+    }
+
     public void init() {
-        // Erstellen von Rollen
         Role memberRole = createRole("Member");
         Role adminRole = createRole("Admin");
 
-        // Erstellen von Mitgliedern
         Member admin = createMember("Guilherme", "Lopes", "gl@myspace.ch", "admin123", adminRole);
         Member member = createMember("Larissa", "Gushue", "l.gushue@gmail.com", "password123", memberRole);
 
-        // Erstellen von Buchungen
         Booking booking = createBooking(LocalDateTime.now(), "Pending", member);
 
-        // Erstellen von Fragen
         Question question = createQuestion("Wie kann ich eine Buchung stornieren?", member);
     }
 
@@ -49,7 +46,7 @@ public class TestDataService {
         member.setFirstName(firstName);
         member.setLastName(lastName);
         member.setEmail(email);
-        member.setPassword(password); // Sollte in einer realen Anwendung gehasht werden
+        member.setPassword(password);
         member.setRole(role);
         entityManager.persist(member);
         return member;

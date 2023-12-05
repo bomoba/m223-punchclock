@@ -21,7 +21,6 @@ public class Member {
     @Column(nullable = false)
     private String password;
 
-    // Ein Member kann nur eine Rolle haben.
     @ManyToOne
     @JoinColumn(name = "roleID", referencedColumnName = "roleID")
     private Role roleID;

@@ -19,23 +19,23 @@ public class CreateBookingForMemberTest {
     @Test
     public void testCreateBookingForMember() {
         String token = given()
-            .contentType(ContentType.JSON)
-            .body("{\"username\":\"memberUsername\", \"password\":\"memberPassword\"}")
-        .when()
-            .post("/auth/login")
-        .then()
-            .extract()
-            .path("token");
+                .contentType(ContentType.JSON)
+                .body("{\"email\":\"memberEmail\", \"password\":\"memberPassword\"}")
+                .when()
+                .post("/auth/login")
+                .then()
+                .extract()
+                .path("token");
 
         given()
-            .auth().oauth2(token)
-            .contentType(ContentType.JSON)
-            .body("{\"date\":\"2023-12-31T12:00:00Z\", \"status\":\"Pending\"}")
-        .when()
-            .post("/bookings")
-        .then()
-            .statusCode(201)
-            .body("date", equalTo("2023-12-31T12:00:00Z"))
-            .body("status", equalTo("Pending"));
+                .auth().oauth2(token)
+                .contentType(ContentType.JSON)
+                .body("{\"date\":\"2023-12-31T12:00:00Z\", \"status\":\"Pending\"}")
+                .when()
+                .post("/bookings")
+                .then()
+                .statusCode(201)
+                .body("date", equalTo("2023-12-31T12:00:00Z"))
+                .body("status", equalTo("Pending"));
     }
 }

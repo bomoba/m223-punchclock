@@ -7,7 +7,7 @@ import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
 @Entity
 @NamedQueries({
-        @NamedQuery(name = "ApplicationUser.findByEmail", query = "SELECT m FROM ApplicationUser m WHERE m.email = :email")
+        @NamedQuery(name = "ApplicationUser.findEmail", query = "SELECT m FROM ApplicationUser m WHERE m.email = :email")
 })
 public class ApplicationUser {
 

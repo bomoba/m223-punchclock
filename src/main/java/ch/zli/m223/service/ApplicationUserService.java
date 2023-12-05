@@ -37,7 +37,7 @@ public class ApplicationUserService {
         ApplicationUser existingUser = entityManager.find(ApplicationUser.class, memberId);
         if (existingUser != null) {
             existingUser.setEmail(user.getEmail());
-            existingUser.setPassword(user.getPassword()); // Passwort sollte gehasht sein
+            existingUser.setPassword(user.getPassword());
             existingUser.setFirstName(user.getFirstName());
             entityManager.merge(existingUser);
             return existingUser;
@@ -63,14 +63,16 @@ public class ApplicationUserService {
     @Transactional
     public String authenticate(String email, String password) {
         ApplicationUser user = findEmail(email)
-                .filter(u -> u.getPassword().equals(password)) // Das Passwort sollte gehasht und geprüft werden
+                .filter(u -> u.getPassword().equals(password))
                 .orElse(null);
 
         if (user != null) {
-            return Jwt.issuer("https://myspace.ch/issuer")
+            String token = Jwt.issuer("https://myspace.ch/issuer")
                     .upn(email)
                     .expiresAt(System.currentTimeMillis() + EXPIRATION_TIME)
                     .sign();
+
+            return token;
         } else {
             throw new SecurityException("Invalid credentials");
         }
