@@ -8,22 +8,31 @@ public class Role {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long roleID;
 
     @Column(nullable = false, unique = true)
     private String name;
 
-    // Beziehung zu Member
-    @OneToMany(mappedBy = "role")
+    @OneToMany(mappedBy = "role", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private List<Member> members;
 
-    
-    public Long getId() {
-        return id;
+    public Role() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Long getRoleID() {
+        return roleID;
+    }
+
+    public void setRoleID(Long roleID) {
+        this.roleID = roleID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public List<Member> getMembers() {
@@ -33,6 +42,4 @@ public class Role {
     public void setMembers(List<Member> members) {
         this.members = members;
     }
-
-    // Weitere Methoden und Logik können hier implementiert werden
 }

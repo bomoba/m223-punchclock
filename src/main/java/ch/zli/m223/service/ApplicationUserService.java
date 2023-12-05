@@ -1,6 +1,5 @@
 package ch.zli.m223.service;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import javax.enterprise.context.ApplicationScoped;
@@ -8,13 +7,13 @@ import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 import ch.zli.m223.model.ApplicationUser;
-import io.smallrye.jwt.algorithm.SignatureAlgorithm;
+import io.smallrye.jwt.build.Jwt;
 
 @ApplicationScoped
 public class ApplicationUserService {
 
     private static final long EXPIRATION_TIME = 864000000; // 10 Tage in Millisekunden
-    private static final String SECRET = "MeinSuperSuperJWTGeheimnis"; 
+    private static final String SECRET = "MeinSuperSuperJWTGeheimnis";
 
     @Inject
     EntityManager entityManager;
@@ -68,11 +67,10 @@ public class ApplicationUserService {
                 .orElse(null);
 
         if (user != null) {
-            return Jwts.builder()
-                    .setSubject(email)
-                    .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
-                    .signWith(SignatureAlgorithm.HS512, SECRET)
-                    .compact();
+            return Jwt.issuer("https://myspace.ch/issuer")
+                    .upn(email)
+                    .expiresAt(System.currentTimeMillis() + EXPIRATION_TIME)
+                    .sign();
         } else {
             throw new SecurityException("Invalid credentials");
         }

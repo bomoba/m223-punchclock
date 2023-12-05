@@ -1,76 +1,74 @@
 package ch.zli.m223.service;
 
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.HashSet;
+import ch.zli.m223.model.Booking;
+import ch.zli.m223.model.Member;
+import ch.zli.m223.model.Question;
+import ch.zli.m223.model.Role;
 
-import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.event.Observes;
+import javax.annotation.PostConstruct;
+import javax.ejb.Singleton;
+import javax.ejb.Startup;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import java.time.LocalDateTime;
 
-import ch.zli.m223.model.Category;
-import ch.zli.m223.model.Entry;
-import ch.zli.m223.model.Tag;
-import io.quarkus.arc.profile.IfBuildProfile;
-import io.quarkus.runtime.StartupEvent;
-
-@IfBuildProfile("dev")
-@ApplicationScoped
+@Singleton
+@Startup
 public class TestDataService {
 
-  @Inject
-  EntityManager entityManager;
+    @Inject
+    private EntityManager entityManager;
 
-  @Transactional
-  void generateTestData(@Observes StartupEvent event) {
-    // Categories
-    var projectACategory = new Category();
-    projectACategory.setTitle("Project A");
-    entityManager.persist(projectACategory);
-
-    var projectBCategory = new Category();
-    projectBCategory.setTitle("Project B");
-    entityManager.persist(projectBCategory);
-
-    var projectCCategory = new Category();
-    projectCCategory.setTitle("Project C");
-    entityManager.persist(projectCCategory);
-
-    // Tags
-    var programmingTag = new Tag();
-    programmingTag.setTitle("Programming");
-    entityManager.persist(programmingTag);
-
-    var debuggingTag = new Tag();
-    debuggingTag.setTitle("Debugging");
-    entityManager.persist(debuggingTag);
-
-    var meetingTag = new Tag();
-    meetingTag.setTitle("Meeting");
-    entityManager.persist(meetingTag);
-
-    // Entries
-    var firstEntry = new Entry();
-    firstEntry.setCategory(projectACategory);
-    firstEntry.setTags(new HashSet<>(Arrays.asList(programmingTag, debuggingTag)));
-    firstEntry.setCheckIn(LocalDateTime.now().minusHours(3));
-    firstEntry.setCheckOut(LocalDateTime.now().minusHours(2));
-    entityManager.persist(firstEntry);
-
-    var secondEntry = new Entry();
-    secondEntry.setCategory(projectACategory);
-    secondEntry.setTags(new HashSet<>(Arrays.asList(meetingTag)));
-    secondEntry.setCheckIn(LocalDateTime.now().minusHours(2));
-    secondEntry.setCheckOut(LocalDateTime.now().minusHours(1));
-    entityManager.persist(secondEntry);
-
-    var thirdEntry = new Entry();
-    thirdEntry.setCategory(projectBCategory);
-    thirdEntry.setTags(new HashSet<>(Arrays.asList(programmingTag)));
-    thirdEntry.setCheckIn(LocalDateTime.now().minusHours(1));
-    thirdEntry.setCheckOut(LocalDateTime.now());
-    entityManager.persist(thirdEntry);
+    @PostConstruct
+    @Transactional
+    public Role createRole(String roleName) {
+      Role role = new Role();
+      role.setName(roleName);
+      entityManager.persist(role);
+      return role;
   }
+    public void init() {
+        // Erstellen von Rollen
+        Role memberRole = createRole("Member");
+        Role adminRole = createRole("Admin");
+
+        // Erstellen von Mitgliedern
+        Member admin = createMember("Guilherme", "Lopes", "gl@myspace.ch", "admin123", adminRole);
+        Member member = createMember("Larissa", "Gushue", "l.gushue@gmail.com", "password123", memberRole);
+
+        // Erstellen von Buchungen
+        Booking booking = createBooking(LocalDateTime.now(), "Pending", member);
+
+        // Erstellen von Fragen
+        Question question = createQuestion("Wie kann ich eine Buchung stornieren?", member);
+    }
+
+    private Member createMember(String firstName, String lastName, String email, String password, Role role) {
+        Member member = new Member();
+        member.setFirstName(firstName);
+        member.setLastName(lastName);
+        member.setEmail(email);
+        member.setPassword(password); // Sollte in einer realen Anwendung gehasht werden
+        member.setRole(role);
+        entityManager.persist(member);
+        return member;
+    }
+
+    private Booking createBooking(LocalDateTime date, String status, Member member) {
+        Booking booking = new Booking();
+        booking.setDate(date);
+        booking.setStatus(status);
+        booking.setMember(member);
+        entityManager.persist(booking);
+        return booking;
+    }
+
+    private Question createQuestion(String questionText, Member member) {
+        Question question = new Question();
+        question.setQuestion(questionText);
+        question.setMember(member);
+        entityManager.persist(question);
+        return question;
+    }
 }

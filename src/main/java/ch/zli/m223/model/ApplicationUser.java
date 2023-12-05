@@ -1,5 +1,7 @@
 package ch.zli.m223.model;
 
+import java.sql.Blob;
+
 import javax.persistence.*;
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
@@ -23,6 +25,17 @@ public class ApplicationUser {
     @Column
     private String firstName;
 
+    @Lob
+    @Basic(fetch = FetchType.LAZY)
+    private Blob profileImage;
+
+    public Blob getProfileImage() {
+        return profileImage;
+    }
+
+    public void setProfileImage(Blob profileImage) {
+        this.profileImage = profileImage;
+    }
     public Long getMemberID() {
         return memberID;
     }
