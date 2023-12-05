@@ -10,17 +10,16 @@ import javax.persistence.NamedQuery;
 
 import org.eclipse.microprofile.openapi.annotations.media.Schema;
 
-@Entity
+@Member
 @NamedQueries({
-  @NamedQuery(name = "ApplicationUser.findByEmail", query = "SELECT u FROM ApplicationUser u WHERE u.email = :email")
+    @NamedQuery(name = "ApplicationUser.findByEmail", query = "SELECT m FROM ApplicationUser m WHERE m.email = :email")
 })
 public class ApplicationUser {
 
-  @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Schema(readOnly = true)
-  private Long id;
-  
+  private Long memberID;
+
   @Column(nullable = false, unique = true)
   private String email;
 
@@ -28,14 +27,14 @@ public class ApplicationUser {
   private String password;
 
   @Column
-  private String nickname;
+  private String firstName;
 
   public Long getId() {
-    return id;
+    return memberID;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public void setId(Long memberID) {
+    this.memberID = memberID;
   }
 
   public String getEmail() {
@@ -54,11 +53,11 @@ public class ApplicationUser {
     this.password = password;
   }
 
-  public String getNickname() {
-    return nickname;
+  public String getFirstName() {
+    return firstName;
   }
 
-  public void setNickname(String nickname) {
-    this.nickname = nickname;
+  public void setFirstname(String firstName) {
+    this.firstName = firstName;
   }
 }
